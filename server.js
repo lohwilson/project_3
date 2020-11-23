@@ -2,8 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-require('dotenv').config();
 const db = mongoose.connection;
+const router = require('./router/router')
+require('dotenv').config();
 
 // Environment Variables (getting ready for Heroku)
 const PORT = process.env.PORT || 3000
@@ -22,8 +23,7 @@ app.use(express.json()); //use .json(), not .urlencoded()
 app.use(express.static('public'));
 
 // Routes
-const websiteController = require('./controllers/websiteController')
-app.use('/website', websiteController);
+app.use(router);
 
 app.listen(PORT, () => {
   console.log('Let\'s get things done on port', PORT)
