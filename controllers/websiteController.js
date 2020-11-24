@@ -20,5 +20,8 @@ module.exports = {
     Website.create(req.body, (err, createdBookmark) => {
       res.json(createdBookmark);
     });
+  },
+  showMainPage(req, res) {
+    
   }
 }

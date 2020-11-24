@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import auth from '../auth/auth';
 export class Header extends Component {
   render() {
     return (
@@ -21,6 +21,12 @@ export class Header extends Component {
         <Link style={linkStyle} to="/signup">
           Sign Up
         </Link>{" "}
+        <button onClick={() => {
+          auth.logout(() => {
+            this.props.history.push("/");
+          });
+        }}
+        >Logout</button>
       </header>
     );
   }

@@ -3,7 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const db = mongoose.connection;
+const cors = require('cors');
 const router = require('./router/router')
+const todoController = require('./controllers/todoController');
 require('dotenv').config();
 
 // Environment Variables (getting ready for Heroku)
@@ -19,6 +21,7 @@ db.on('error', err => console.log(err.message + ' is Mongod not running?'))
 db.on('disconnected', () => console.log('mongo disconnected'))
 
 // Middleware
+app.use(cors());
 app.use(express.json()); //use .json(), not .urlencoded()
 app.use(express.static('public'));
 
